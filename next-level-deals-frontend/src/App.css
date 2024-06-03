@@ -1,0 +1,15 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.card {
+  padding: 2em;
+  /* max-width: 10em; */
+  border: 2px solid;
+  border-width: 1px;
+  border-color: aliceblue;
+}
+
