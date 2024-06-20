@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import Gamecard from './components/home/Gamecard'
+import Navbar from './components/navbar/Navbar'
+import brandLogo from './assets/nld_logo.png'
 import './App.css'
 
 function App() {
@@ -52,18 +52,21 @@ function App() {
 
   return (
     <>
-      <h1 className=''>Next Level Deals</h1>
+      <Navbar />
+      <div id='nav-logo-container' className='mt-5 rounded'>
+        <img id='nav-logo' src={brandLogo} className='rounded' alt="" />
+      </div>
 
       <div className="container mt-5">
-        <div className="row justify-content-center">
+        {/* <div className="row justify-content-center">
           <button type='button' className='btn btn-dark col-2 me-1'> $0 - $4.99   </button>
           <button type='button' className='btn btn-dark col-2 me-1'> $5 - $9.99   </button>
           <button type='button' className='btn btn-dark col-2 me-1'> $10 - $24.99 </button>
           <button type='button' className='btn btn-dark col-2 me-1'> $25+         </button>
-        </div>
+        </div> */}
 
         <div className='row'>
-          <h2 className='text-start mt-5'>$0 - $4.99</h2>
+          <h2 className='text-start mt-3 text-light'>$0 - $4.99</h2>
             {fiveDollarGames.map((game, index) => (
               <div key={index} className='col-md-3'>
                 <Gamecard
@@ -74,11 +77,11 @@ function App() {
                 />
               </div>
             ))}
-          <a href="#" className='mt-2'>See More</a>
+          {/* <a href="#" className='mt-2'>See More</a> */}
         </div>
 
         <div className='row'>
-          <h2 className='text-start mt-5'>$5 - $9.99</h2>
+          <h2 className='text-start mt-5 text-light'>$5 - $9.99</h2>
             {tenDollarGames.map((game, index) => (
               <div key={index} className='col-md-3'>
                 <Gamecard
@@ -89,11 +92,11 @@ function App() {
                 />
               </div>
             ))}
-          <a href="#" className='mt-2'>See More</a>
+          {/* <a href="#" className='mt-2'>See More</a> */}
         </div>
 
         <div className='row'>
-          <h2 className='text-start mt-5'>$10 - $24.99</h2>
+          <h2 className='text-start mt-5 text-light'>$10 - $24.99</h2>
             {twentyFiveDollarGames.map((game, index) => (
               <div key={index} className='col-md-3'>
                 <Gamecard
@@ -104,11 +107,11 @@ function App() {
                 />
               </div>
             ))}
-          <a href="#" className='mt-2'>See More</a>
+          {/* <a href="#" className='mt-2'>See More</a> */}
         </div>
 
         <div className='row'>
-          <h2 className='text-start mt-5'>$25.00 +</h2>
+          <h2 className='text-start mt-5 text-light'>$25.00 +</h2>
             {aboveTwentyFiveDollarGames.map((game, index) => (
               <div key={index} className='col-md-3'>
                 <Gamecard
@@ -119,7 +122,7 @@ function App() {
                 />
               </div>
             ))}
-          <a href="#" className='mt-2'>See More</a>
+          {/* <a href="#" className='mt-2'>See More</a> */}
         </div>
       </div>
     </>
