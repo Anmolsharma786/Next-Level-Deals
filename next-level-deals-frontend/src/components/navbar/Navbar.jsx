@@ -1,6 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './Navbar.css'
-import brandLogo from '../../assets/nld_logo.png'
 
 const Navbar = () => {
   return (
@@ -13,10 +13,10 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a className="nav-link active text-light" aria-current="page" href="#">Home</a>
+              <Link className="nav-link active text-light" to="/">Home</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link text-light" href="#">Search</a>
+              <Link className="nav-link active text-light" to="/search">Search</Link>
             </li>
           </ul>
         </div>

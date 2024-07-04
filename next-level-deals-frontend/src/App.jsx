@@ -58,12 +58,6 @@ function App() {
       </div>
 
       <div className="container mt-5">
-        {/* <div className="row justify-content-center">
-          <button type='button' className='btn btn-dark col-2 me-1'> $0 - $4.99   </button>
-          <button type='button' className='btn btn-dark col-2 me-1'> $5 - $9.99   </button>
-          <button type='button' className='btn btn-dark col-2 me-1'> $10 - $24.99 </button>
-          <button type='button' className='btn btn-dark col-2 me-1'> $25+         </button>
-        </div> */}
 
         <div className='row'>
           <h2 className='text-start mt-3 text-light'>$0 - $4.99</h2>
