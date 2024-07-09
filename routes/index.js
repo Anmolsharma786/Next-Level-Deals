@@ -6,6 +6,18 @@ router.get('/', (req, res) => {
   res.send('Hello, world!');
 });
 
+//Deals under $5
+router.get('/allDeals', async (req, res) => {
+  try {
+      const response = await axios.get('https://www.cheapshark.com/api/1.0/deals');
+      console.log(response.data); // Log the data to the console
+      res.status(200).json(response.data); // Send the data back as a JSON response
+  } catch (error) {
+      console.error('Error fetching data from API:', error);
+      res.status(500).send('An error occurred while fetching data.');
+  }
+});
+
 
 //Deals under $5
 router.get('/dealsUnder5Dollars', async (req, res) => {
