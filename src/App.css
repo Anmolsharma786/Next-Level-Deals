@@ -4,8 +4,14 @@
   padding: 2rem;
   text-align: center;
 }
-.text-white
-{
-  color: white;
+
+
+.search-input {
+  background-color: #343a40;
+  color: #fff;
+  border-color: #6c757d;
 }
 
+.search-input::placeholder {
+  color: #fff;
+}
