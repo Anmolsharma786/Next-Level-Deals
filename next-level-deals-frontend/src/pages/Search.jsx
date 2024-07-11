@@ -8,11 +8,14 @@ import '../App.css'
 function Search() {
 
   const [allDeals, setAllDeals] = useState([]);
-
+  const [filteredDeals, setFilteredDeals] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  
   const getAllGames = async () => {
     const results = await fetch('http://localhost:3000/allDeals');
     const resultsJson = await results.json();
     setAllDeals(resultsJson);
+    setFilteredDeals(resultsJson);
     console.log(resultsJson);
   }
 
@@ -20,7 +23,26 @@ function Search() {
     getAllGames();
   }, []);
 
-
+  const filterDeals = (minPrice, maxPrice) => {
+    const filtered = allDeals.filter(
+      (game) => game.salePrice >= minPrice && game.salePrice <= maxPrice
+    );
+    setFilteredDeals(filtered);
+  };
+  const showAllDeals = () => {
+    setFilteredDeals(allDeals);
+  };
+  const sortDealsByPrice = (deals) => {
+    return deals.sort((a, b) => a.salePrice - b.salePrice);
+  };
+  const handleSearch = (event) => {
+    const query = event.target.value.toLowerCase();
+    setSearchQuery(query);
+    const filtered = allDeals.filter((game) =>
+      game.title.toLowerCase().includes(query)
+    );
+    setFilteredDeals(filtered);
+  };
   return (
     <>
       <Navbar />
@@ -31,10 +53,22 @@ function Search() {
       <h1 className='mt-5 text-light'> Search Games</h1>
 
       <div className="row justify-content-center mt-4">
-        <button type='button' className='btn btn-dark col-2 me-1'> $0 - $4.99   </button>
-        <button type='button' className='btn btn-dark col-2 me-1'> $5 - $9.99   </button>
-        <button type='button' className='btn btn-dark col-2 me-1'> $10 - $24.99 </button>
-        <button type='button' className='btn btn-dark col-2 me-1'> $25+         </button>
+        <button type='button' className='btn btn-dark col-2 me-1' onClick={() => filterDeals(0, 4.99)}> $0 - $4.99   </button>
+        <button type='button' className='btn btn-dark col-2 me-1' onClick={() => filterDeals(5, 9.99)}> $5 - $9.99   </button>
+        <button type='button' className='btn btn-dark col-2 me-1' onClick={() => filterDeals(10, 24.99)}> $10 - $24.99 </button>
+        <button type='button' className='btn btn-dark col-2 me-1' onClick={() => filterDeals(25, Infinity)}> $25+         </button>
+        <button type='button' className='btn btn-dark col-2 me-1' onClick={showAllDeals}> All Games </button>
+      </div>
+
+      <div className="row justify-content-center mt-4">
+        <input 
+          type="text" 
+          className="form-control col-6"
+          placeholder="Search by game title"
+          value={searchQuery}
+          onChange={handleSearch}
+          
+        />
       </div>
 
       <table className="table table-dark table-hover mt-5">
@@ -49,14 +83,15 @@ function Search() {
         </thead>
 
         <tbody>
-          {allDeals.map((game, index) => (
+          {sortDealsByPrice(filteredDeals).map((game, index) => (
             <tr key={index}>
               <td>{game.normalPrice}</td>
               <td>{game.salePrice}</td>
               <td>
                 <Link className='text-light'>
                   {game.title}
-                </Link></td>
+                </Link>
+              </td>
               <td>{game.steamRatingPercent}</td>
             </tr>
           ))}
