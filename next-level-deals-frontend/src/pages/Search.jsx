@@ -10,18 +10,20 @@ function Search() {
   const [allDeals, setAllDeals] = useState([]);
   const [filteredDeals, setFilteredDeals] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
-  
-  const getAllGames = async () => {
-    const results = await fetch('http://localhost:3000/allDeals');
+  const [pageNum, setPageNum] = useState(0);
+
+  const getAllGames = async (currPage) => {
+    const results = await fetch(`http://localhost:3000/allDeals/${currPage}`);
     const resultsJson = await results.json();
+
     setAllDeals(resultsJson);
     setFilteredDeals(resultsJson);
     console.log(resultsJson);
   }
 
   useEffect(() => {
-    getAllGames();
-  }, []);
+    getAllGames(pageNum);
+  }, [pageNum]);
 
   const filterDeals = (minPrice, maxPrice) => {
     const filtered = allDeals.filter(
@@ -43,6 +45,20 @@ function Search() {
     );
     setFilteredDeals(filtered);
   };
+
+  const handleNext = () => {
+    setPageNum(prevPageNum => prevPageNum + 1);
+  }
+
+  const handlePrev = () => {
+    if (pageNum == 0) {
+      return;
+    }
+    setPageNum(prevPageNum => prevPageNum - 1);
+  }
+
+  console.log(pageNum);
+
   return (
     <>
       <Navbar />
@@ -61,13 +77,13 @@ function Search() {
       </div>
 
       <div className="row justify-content-center mt-4">
-        <input 
-          type="text" 
+        <input
+          type="text"
           className="form-control col-6"
           placeholder="Search by game title"
           value={searchQuery}
           onChange={handleSearch}
-          
+
         />
       </div>
 
@@ -88,7 +104,7 @@ function Search() {
               <td>{game.normalPrice}</td>
               <td>{game.salePrice}</td>
               <td>
-                <Link className='text-light'>
+              <Link to={`https://www.cheapshark.com/redirect?dealID=${game.dealID}`} className='text-light'>
                   {game.title}
                 </Link>
               </td>
@@ -98,6 +114,17 @@ function Search() {
         </tbody>
 
       </table>
+
+      <nav aria-label="Page navigation">
+        <ul className="pagination justify-content-center">
+          <li className="page-item">
+            <Link className={"page-link" + (pageNum === 0 ? " disabled" : "")} onClick={handlePrev}>Prev</Link>
+          </li>
+          <li className="page-item">
+            <Link className={"page-link" + (pageNum === 50 ? " disabled" : "")} onClick={handleNext}>Next</Link>
+          </li>
+        </ul>
+      </nav>
     </>
   )
 }

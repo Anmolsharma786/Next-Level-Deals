@@ -40,15 +40,12 @@ function App() {
     console.log(resultsJson);
   }
 
-
   useEffect(() => {
     getFiveDollarGames();
     getTenDollarGames();
     getTwentyFiveDollarGames();
     getAboveTwentyFiveGames();
   }, []);
-
-
 
   return (
     <>
