@@ -11,40 +11,42 @@ function Search() {
   const [filteredDeals, setFilteredDeals] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [pageNum, setPageNum] = useState(0);
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(50);
 
   const getAllGames = async (currPage) => {
-    const results = await fetch(`http://localhost:3000/allDeals/${currPage}`);
+    const results = await fetch(`http://localhost:3000/allDeals/${currPage}/${minPrice}/${maxPrice}`);
     const resultsJson = await results.json();
 
-    setAllDeals(resultsJson);
     setFilteredDeals(resultsJson);
     console.log(resultsJson);
   }
 
   useEffect(() => {
     getAllGames(pageNum);
-  }, [pageNum]);
+  }, [pageNum, minPrice, maxPrice]);
 
-  const filterDeals = (minPrice, maxPrice) => {
-    const filtered = allDeals.filter(
-      (game) => game.salePrice >= minPrice && game.salePrice <= maxPrice
-    );
-    setFilteredDeals(filtered);
+  const filterDeals = async (minPrice, maxPrice) => {
+    setMinPrice(minPrice);
+    setMaxPrice(maxPrice);
+    setPageNum(0);
   };
-  const showAllDeals = () => {
-    setFilteredDeals(allDeals);
-  };
+
   const sortDealsByPrice = (deals) => {
     return deals.sort((a, b) => a.salePrice - b.salePrice);
   };
-  const handleSearch = (event) => {
-    const query = event.target.value.toLowerCase();
-    setSearchQuery(query);
-    const filtered = allDeals.filter((game) =>
-      game.title.toLowerCase().includes(query)
-    );
-    setFilteredDeals(filtered);
+
+  const handleSearch = async (event) => {
+    const gameTitle = event.target.value.toLowerCase();
+    setSearchQuery(gameTitle);
   };
+
+  const performSearch = async (gameTitle) => {
+    const results = await fetch(`http://localhost:3000/searchDeals/${gameTitle}`);
+    const resultsJson = await results.json();
+    setFilteredDeals(resultsJson);
+    console.log(resultsJson)
+  }
 
   const handleNext = () => {
     setPageNum(prevPageNum => prevPageNum + 1);
@@ -69,11 +71,11 @@ function Search() {
       <h1 className='mt-5 text-light'> Search Games</h1>
 
       <div className="row justify-content-center mt-4">
-        <button type='button' className='btn btn-dark col-2 me-1' onClick={() => filterDeals(0, 4.99)}> $0 - $4.99   </button>
-        <button type='button' className='btn btn-dark col-2 me-1' onClick={() => filterDeals(5, 9.99)}> $5 - $9.99   </button>
+        <button type='button' className='btn btn-dark col-2 me-1' onClick={() => filterDeals(0, 4.99)}>   $0 - $4.99   </button>
+        <button type='button' className='btn btn-dark col-2 me-1' onClick={() => filterDeals(5, 9.99)}>   $5 - $9.99   </button>
         <button type='button' className='btn btn-dark col-2 me-1' onClick={() => filterDeals(10, 24.99)}> $10 - $24.99 </button>
-        <button type='button' className='btn btn-dark col-2 me-1' onClick={() => filterDeals(25, Infinity)}> $25+         </button>
-        <button type='button' className='btn btn-dark col-2 me-1' onClick={showAllDeals}> All Games </button>
+        <button type='button' className='btn btn-dark col-2 me-1' onClick={() => filterDeals(25, 50)}>    $25+         </button>
+        <button type='button' className='btn btn-dark col-2 me-1' onClick={() => filterDeals(0, 50)}>     All Games    </button>
       </div>
 
       <div className="row justify-content-center mt-4">
@@ -83,6 +85,12 @@ function Search() {
           placeholder="Search by game title"
           value={searchQuery}
           onChange={handleSearch}
+          onKeyUp={event => {
+            if (event.key === 'Enter') {
+                performSearch(searchQuery);
+                event.preventDefault();
+            }
+        }}
 
         />
       </div>
@@ -91,10 +99,10 @@ function Search() {
 
         <thead>
           <tr>
-            <th scope="col">Normal Price</th>
-            <th scope="col">Discounted Price</th>
-            <th scope="col">Game Title</th>
-            <th scope="col">Steam Rating</th>
+            <th scope="col-1">Normal Price</th>
+            <th scope="col-1">Discounted Price</th>
+            <th scope="col-3">Game Title</th>
+            <th scope="col-1">Steam Rating</th>
           </tr>
         </thead>
 
@@ -104,7 +112,7 @@ function Search() {
               <td>{game.normalPrice}</td>
               <td>{game.salePrice}</td>
               <td>
-              <Link to={`https://www.cheapshark.com/redirect?dealID=${game.dealID}`} className='text-light'>
+                <Link to={`https://www.cheapshark.com/redirect?dealID=${game.dealID}`} className='text-light'>
                   {game.title}
                 </Link>
               </td>

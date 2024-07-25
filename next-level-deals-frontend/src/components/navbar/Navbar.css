@@ -5,3 +5,9 @@
 .bg-body-tertiary {
 
 }
+
+.nav-link:hover {
+  background-color: #1c2f2f; /* Change this to your preferred color */
+  opacity: 50%;
+  border-radius: 15em;
+}

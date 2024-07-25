@@ -68,7 +68,6 @@ function App() {
                 />
               </div>
             ))}
-          {/* <a href="#" className='mt-2'>See More</a> */}
         </div>
 
         <div className='row'>
@@ -83,7 +82,6 @@ function App() {
                 />
               </div>
             ))}
-          {/* <a href="#" className='mt-2'>See More</a> */}
         </div>
 
         <div className='row'>
@@ -98,7 +96,6 @@ function App() {
                 />
               </div>
             ))}
-          {/* <a href="#" className='mt-2'>See More</a> */}
         </div>
 
         <div className='row'>
@@ -113,7 +110,6 @@ function App() {
                 />
               </div>
             ))}
-          {/* <a href="#" className='mt-2'>See More</a> */}
         </div>
       </div>
     </>
