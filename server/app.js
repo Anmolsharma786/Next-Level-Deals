@@ -7,7 +7,7 @@ const port = 3000;
 
 const allowedOrigins = [
   'http://127.0.0.1:5173',
-  'https://gamedeals-q05aus7pv-anmolsharma786s-projects.vercel.app'
+  'https://next-level-deals.vercel.app/'
 ];
 
 // Import routes
