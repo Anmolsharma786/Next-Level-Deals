@@ -13,28 +13,28 @@ function App() {
   const maxGames = 4;
 
   const getFiveDollarGames = async () => {
-    const results = await fetch('http://localhost:3000/dealsUnder5Dollars');
+    const results = await fetch('https://server-b43sg2zqa-anmolsharma786s-projects.vercel.app/api/dealsUnder5Dollars');
     const resultsJson = await results.json();
     setFiveDollarGames(resultsJson.slice(0, maxGames));
     console.log(resultsJson);
   }
 
   const getTenDollarGames = async () => {
-    const results = await fetch('http://localhost:3000/dealsUnder10Dollars');
+    const results = await fetch('https://server-b43sg2zqa-anmolsharma786s-projects.vercel.app/api/dealsUnder10Dollars');
     const resultsJson = await results.json();
     setTenDollarGames(resultsJson.slice(0, maxGames));
     console.log(resultsJson);
   }
 
   const getTwentyFiveDollarGames = async () => {
-    const results = await fetch('http://localhost:3000/dealsUnder25Dollars');
+    const results = await fetch('https://server-b43sg2zqa-anmolsharma786s-projects.vercel.app/api/dealsUnder25Dollars');
     const resultsJson = await results.json();
     setTwentyFiveDollarGames(resultsJson.slice(0, maxGames));
     console.log(resultsJson);
   }
 
   const getAboveTwentyFiveGames = async () => {
-    const results = await fetch('http://localhost:3000/dealsAbove25Dollars');
+    const results = await fetch('https://server-b43sg2zqa-anmolsharma786s-projects.vercel.app/api/dealsAbove25Dollars');
     const resultsJson = await results.json();
     setAboveTwentyFiveDollarGames(resultsJson.slice(0, maxGames));
     console.log(resultsJson);

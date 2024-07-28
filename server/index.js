@@ -2,12 +2,12 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
-router.get('/', (req, res) => {
+router.get('/api', (req, res) => {
   res.send('Hello, world!');
 });
 
 //Paginated and Filtered Deals
-router.get('/allDeals/:pageNumber/:filteredMin/:filteredMax', async (req, res) => {
+router.get('/api/allDeals/:pageNumber/:filteredMin/:filteredMax', async (req, res) => {
   try {
       const pageNum = req.params.pageNumber;
       const minPrice = req.params.filteredMin;
@@ -24,7 +24,7 @@ router.get('/allDeals/:pageNumber/:filteredMin/:filteredMax', async (req, res) =
 });
 
 //Paginated and Filtered Deals
-router.get('/searchDeals/:searchTitle', async (req, res) => {
+router.get('/api/searchDeals/:searchTitle', async (req, res) => {
   try {
       const gameTitle = req.params.searchTitle;
       console.log(gameTitle);
@@ -40,7 +40,7 @@ router.get('/searchDeals/:searchTitle', async (req, res) => {
 
 
 //Deals under $5
-router.get('/dealsUnder5Dollars', async (req, res) => {
+router.get('/api/dealsUnder5Dollars', async (req, res) => {
   try {
       const response = await axios.get('https://www.cheapshark.com/api/1.0/deals?upperPrice=5');
       console.log(response.data); // Log the data to the console
@@ -53,7 +53,7 @@ router.get('/dealsUnder5Dollars', async (req, res) => {
 
 
 //Deals under $10 and above $5
-router.get('/dealsUnder10Dollars', async (req, res) => {
+router.get('/api/dealsUnder10Dollars', async (req, res) => {
   try {
       const response = await axios.get('https://www.cheapshark.com/api/1.0/deals?lowerPrice=5&upperPrice=10');
       console.log(response.data); // Log the data to the console
@@ -66,7 +66,7 @@ router.get('/dealsUnder10Dollars', async (req, res) => {
 
 
 //Deals under $25 and above $10
-router.get('/dealsUnder25Dollars', async (req, res) => {
+router.get('/api/dealsUnder25Dollars', async (req, res) => {
   try {
       const response = await axios.get('https://www.cheapshark.com/api/1.0/deals?lowerPrice=10&upperPrice=25');
       console.log(response.data); // Log the data to the console
@@ -78,7 +78,7 @@ router.get('/dealsUnder25Dollars', async (req, res) => {
 });
 
 //Deals above $25
-router.get('/dealsAbove25Dollars', async (req, res) => {
+router.get('/api/dealsAbove25Dollars', async (req, res) => {
   try {
       const response = await axios.get('https://www.cheapshark.com/api/1.0/deals?lowerPrice=25');
       console.log(response.data); // Log the data to the console
