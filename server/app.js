@@ -7,7 +7,7 @@ const port = 3000;
 
 
 // Import routes
-const indexRouter = require('./routes/index');
+const indexRouter = require('./index');
 
 // Middleware
 app.use(express.json());
