@@ -13,7 +13,7 @@ function App() {
   const maxGames = 4;
 
   const getFiveDollarGames = async () => {
-    const results = await fetch('https://server-8wfwt3vh8-anmolsharma786s-projects.vercel.app/api/dealsUnder5Dollars', {
+    const results = await fetch('https://server-9a9ybabea-anmolsharma786s-projects.vercel.app//api/dealsUnder5Dollars', {
       mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
