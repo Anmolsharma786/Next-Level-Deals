@@ -13,7 +13,12 @@ function App() {
   const maxGames = 4;
 
   const getFiveDollarGames = async () => {
-    const results = await fetch('https://server-b43sg2zqa-anmolsharma786s-projects.vercel.app/api/dealsUnder5Dollars');
+    const results = await fetch('https://server-8wfwt3vh8-anmolsharma786s-projects.vercel.app/api/dealsUnder5Dollars', {
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
     const resultsJson = await results.json();
     setFiveDollarGames(resultsJson.slice(0, maxGames));
     console.log(resultsJson);

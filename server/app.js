@@ -5,7 +5,10 @@ const cors = require('cors');
 const app = express();
 const port = 3000;
 
-const allowedOrigins = ['http://127.0.0.1:5173', 'https://your-deployed-react-app.vercel.app'];
+const allowedOrigins = [
+  'http://127.0.0.1:5173',
+  'https://gamedeals-q05aus7pv-anmolsharma786s-projects.vercel.app'
+];
 
 // Import routes
 const indexRouter = require('./index');
@@ -13,7 +16,17 @@ const indexRouter = require('./index');
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors());
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    }
+  })
+);
 
 // Routes
 app.use('/', indexRouter);
