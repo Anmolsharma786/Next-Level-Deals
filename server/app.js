@@ -16,17 +16,16 @@ const indexRouter = require('./index');
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    }
-  })
-);
+app.use(cors());
+// {
+//   origin: function (origin, callback) {
+//     if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   }
+// }
 
 // Routes
 app.use('/', indexRouter);
