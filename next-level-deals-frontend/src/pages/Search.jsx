@@ -15,7 +15,7 @@ function Search() {
   const [maxPrice, setMaxPrice] = useState(50);
 
   const getAllGames = async (currPage) => {
-    const results = await fetch(`http://localhost:3000/allDeals/${currPage}/${minPrice}/${maxPrice}`);
+    const results = await fetch(`https://next-level-deals-4mlr.vercel.app/api/allDeals/${currPage}/${minPrice}/${maxPrice}`);
     const resultsJson = await results.json();
 
     setFilteredDeals(resultsJson);
@@ -42,7 +42,7 @@ function Search() {
   };
 
   const performSearch = async (gameTitle) => {
-    const results = await fetch(`http://localhost:3000/searchDeals/${gameTitle}`);
+    const results = await fetch(`https://next-level-deals-4mlr.vercel.app/api/searchDeals/${gameTitle}`);
     const resultsJson = await results.json();
     setFilteredDeals(resultsJson);
     console.log(resultsJson)
