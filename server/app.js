@@ -16,7 +16,9 @@ const indexRouter = require('./index');
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors());
+app.use(cors({
+  origin: '*'
+}));
 // {
 //   origin: function (origin, callback) {
 //     if (!origin || allowedOrigins.indexOf(origin) !== -1) {
