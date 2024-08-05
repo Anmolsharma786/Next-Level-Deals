@@ -14,14 +14,18 @@ router.get('/allDeals/:pageNumber/:filteredMin/:filteredMax', async (req, res) =
       const maxPrice = req.params.filteredMax;
       console.log(pageNum, minPrice, maxPrice);
       const response = await axios.get(`https://www.cheapshark.com/api/1.0/deals?sortBy=price&desc=0&lowerPrice=${minPrice}&upperPrice=${maxPrice}&pageNumber=${pageNum}&pageSize=30`);
-      // console.log(response.data); // Log the data to the console
-      // const totalPages = response.headers['x-total-page-count']
-      res.status(200).json(response.data); // Send the data back as a JSON response
+      console.log(response.headers['x-total-page-count']); // Log the data to the console
+      const totalPages = response.headers['x-total-page-count']
+      res.status(200).json({
+        data: response.data,
+        totalPages: totalPages
+      }); // Send the data back as a JSON response
   } catch (error) {
       console.error('Error fetching data from API:', error);
       res.status(500).send('An error occurred while fetching data.');
   }
 });
+
 
 //Paginated and Filtered Deals
 router.get('/searchDeals/:searchTitle', async (req, res) => {
@@ -29,9 +33,12 @@ router.get('/searchDeals/:searchTitle', async (req, res) => {
       const gameTitle = req.params.searchTitle;
       console.log(gameTitle);
       const response = await axios.get(`https://www.cheapshark.com/api/1.0/deals?title=${gameTitle}`);
-      // console.log(response.data); // Log the data to the console
-      // const totalPages = response.headers['x-total-page-count']
-      res.status(200).json(response.data); // Send the data back as a JSON response
+      const totalPages = response.headers['x-total-page-count']
+      console.log(response.headers['x-total-page-count']); // Log the data to the console
+      res.status(200).json({
+        data: response.data,
+        totalPages: totalPages
+      }); // Send the data back as a JSON response
   } catch (error) {
       console.error('Error fetching data from API:', error);
       res.status(500).send('An error occurred while fetching data.');
@@ -43,7 +50,6 @@ router.get('/searchDeals/:searchTitle', async (req, res) => {
 router.get('/dealsUnder5Dollars', async (req, res) => {
   try {
       const response = await axios.get('https://www.cheapshark.com/api/1.0/deals?upperPrice=5');
-      console.log(response.data); // Log the data to the console
       res.status(200).json(response.data); // Send the data back as a JSON response
   } catch (error) {
       console.error('Error fetching data from API:', error);
@@ -56,7 +62,6 @@ router.get('/dealsUnder5Dollars', async (req, res) => {
 router.get('/dealsUnder10Dollars', async (req, res) => {
   try {
       const response = await axios.get('https://www.cheapshark.com/api/1.0/deals?lowerPrice=5&upperPrice=10');
-      console.log(response.data); // Log the data to the console
       res.status(200).json(response.data); // Send the data back as a JSON response
   } catch (error) {
       console.error('Error fetching data from API:', error);
@@ -69,7 +74,6 @@ router.get('/dealsUnder10Dollars', async (req, res) => {
 router.get('/dealsUnder25Dollars', async (req, res) => {
   try {
       const response = await axios.get('https://www.cheapshark.com/api/1.0/deals?lowerPrice=10&upperPrice=25');
-      console.log(response.data); // Log the data to the console
       res.status(200).json(response.data); // Send the data back as a JSON response
   } catch (error) {
       console.error('Error fetching data from API:', error);
@@ -81,7 +85,6 @@ router.get('/dealsUnder25Dollars', async (req, res) => {
 router.get('/dealsAbove25Dollars', async (req, res) => {
   try {
       const response = await axios.get('https://www.cheapshark.com/api/1.0/deals?lowerPrice=25');
-      console.log(response.data); // Log the data to the console
       res.status(200).json(response.data); // Send the data back as a JSON response
   } catch (error) {
       console.error('Error fetching data from API:', error);

@@ -3,6 +3,7 @@ import Gamecard from './components/home/Gamecard'
 import Navbar from './components/navbar/Navbar'
 import brandLogo from './assets/nld_logo.png'
 import './App.css'
+import { Link } from 'react-router-dom'
 
 function App() {
 
@@ -57,59 +58,59 @@ function App() {
       <div className="container mt-5">
 
         <div className='row'>
-          <h2 className='text-start mt-3 text-light'>$0 - $4.99</h2>
-            {fiveDollarGames.map((game, index) => (
-              <div key={index} className='col-md-3'>
-                <Gamecard
-                  thumbnail={game.thumb}
-                  title={game.title}
-                  price={game.salePrice}
-                  dealId={game.dealID}
-                />
-              </div>
-            ))}
+          <Link id='quickFilter' to={"/search?min=0&max=4.99"}><h2 className='text-start mt-3 text-light'>$0 - $4.99</h2></Link>
+          {fiveDollarGames.map((game, index) => (
+            <div key={index} className='col-md-3'>
+              <Gamecard
+                thumbnail={game.thumb}
+                title={game.title}
+                price={game.salePrice}
+                dealId={game.dealID}
+              />
+            </div>
+          ))}
         </div>
 
         <div className='row'>
-          <h2 className='text-start mt-5 text-light'>$5 - $9.99</h2>
-            {tenDollarGames.map((game, index) => (
-              <div key={index} className='col-md-3'>
-                <Gamecard
-                  thumbnail={game.thumb}
-                  title={game.title}
-                  price={game.salePrice}
-                  dealId={game.dealID}
-                />
-              </div>
-            ))}
+          <Link id='quickFilter' to={"/search?min=5&max=9.99"}><h2 className='text-start mt-5 text-light'>$5 - $9.99</h2></Link>
+          {tenDollarGames.map((game, index) => (
+            <div key={index} className='col-md-3'>
+              <Gamecard
+                thumbnail={game.thumb}
+                title={game.title}
+                price={game.salePrice}
+                dealId={game.dealID}
+              />
+            </div>
+          ))}
         </div>
 
         <div className='row'>
-          <h2 className='text-start mt-5 text-light'>$10 - $24.99</h2>
-            {twentyFiveDollarGames.map((game, index) => (
-              <div key={index} className='col-md-3'>
-                <Gamecard
-                  thumbnail={game.thumb}
-                  title={game.title}
-                  price={game.salePrice}
-                  dealId={game.dealID}
-                />
-              </div>
-            ))}
+          <Link id='quickFilter' to={"/search?min=10&max=24.99"}><h2 className='text-start mt-5 text-light'>$10 - $24.99</h2></Link>
+          {twentyFiveDollarGames.map((game, index) => (
+            <div key={index} className='col-md-3'>
+              <Gamecard
+                thumbnail={game.thumb}
+                title={game.title}
+                price={game.salePrice}
+                dealId={game.dealID}
+              />
+            </div>
+          ))}
         </div>
 
         <div className='row'>
-          <h2 className='text-start mt-5 text-light'>$25.00 +</h2>
-            {aboveTwentyFiveDollarGames.map((game, index) => (
-              <div key={index} className='col-md-3'>
-                <Gamecard
-                  thumbnail={game.thumb}
-                  title={game.title}
-                  price={game.salePrice}
-                  dealId={game.dealID}
-                />
-              </div>
-            ))}
+          <Link id='quickFilter' to={"/search?min=25&max=50"}><h2 className='text-start mt-5 text-light'>$25.00 +</h2></Link>
+          {aboveTwentyFiveDollarGames.map((game, index) => (
+            <div key={index} className='col-md-3'>
+              <Gamecard
+                thumbnail={game.thumb}
+                title={game.title}
+                price={game.salePrice}
+                dealId={game.dealID}
+              />
+            </div>
+          ))}
         </div>
       </div>
     </>

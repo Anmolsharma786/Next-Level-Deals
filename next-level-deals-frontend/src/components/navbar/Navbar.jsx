@@ -16,7 +16,7 @@ const Navbar = () => {
               <Link className="nav-link active text-light" to="/">Home</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link active text-light" to="/search">Search</Link>
+              <Link className="nav-link active text-light" to={`/search?min=0&max=50`}>Search</Link>
             </li>
           </ul>
         </div>
