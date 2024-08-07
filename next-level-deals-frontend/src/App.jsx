@@ -62,7 +62,8 @@ function App() {
       <div className="container mt-5">
 
         <div className='row'>
-          <h2 className='text-start mt-3 text-light'>$0 - $4.99</h2>
+          {/* <h2 className='text-start mt-3 text-light'>$0 - $4.99</h2> */}
+          <Link id='quickFilter' to={"/search?min=0&max=4.99"}><h2 className='text-start mt-3 text-light'>$0 - $4.99</h2></Link>
             {fiveDollarGames.map((game, index) => (
               <div key={index} className='col-md-3'>
                 <Gamecard
