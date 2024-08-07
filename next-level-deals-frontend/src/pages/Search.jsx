@@ -19,7 +19,7 @@ function Search() {
 
 
   const getAllGames = async (currPage) => {
-    const results = await fetch(`https://next-level-deals-4mlr.vercel.app/api/allDeals/${currPage}/${minPrice}/${maxPrice}`);
+    const results = await fetch(`https://next-level-deals-4mlr.vercel.app/api/allDeals/${currPage}/${parseInt(min)}/${parseInt(max)}`);
     const resultsJson = await results.json();
 
 
