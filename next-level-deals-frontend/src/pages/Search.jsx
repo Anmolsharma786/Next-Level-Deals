@@ -94,22 +94,22 @@ function Search() {
               $0 - $4.99
             </button>
           </Link>
-          <Link to={`/search?min=5&max=9.99`}>
+          <Link to={`/api/search?min=5&max=9.99`}>
             <button type='button' className={`btn btn-dark col-2 me-1 ${isSelected(5, 9.99) ? 'selected' : ''}`} onClick={() => setPageNum(0)}>
               $5 - $9.99
             </button>
           </Link>
-          <Link to={`/search?min=10&max=24.99`}>
+          <Link to={`/api/search?min=10&max=24.99`}>
             <button type='button' className={`btn btn-dark col-2 me-1 ${isSelected(10, 24.99) ? 'selected' : ''}`} onClick={() => setPageNum(0)}>
               $10 - $24.99
             </button>
           </Link>
-          <Link to={`/search?min=25&max=50`}>
+          <Link to={`/api/search?min=25&max=50`}>
             <button type='button' className={`btn btn-dark col-2 me-1 ${isSelected(25, 50) ? 'selected' : ''}`} onClick={() => setPageNum(0)}>
               $25+
             </button>
           </Link>
-          <Link to={`/search?min=0&max=50`}>
+          <Link to={`/api/search?min=0&max=50`}>
             <button type='button' className={`btn btn-dark col-2 me-1 ${isSelected(0, 50) ? 'selected' : ''}`} onClick={() => setPageNum(0)}>
               All Games
             </button>
