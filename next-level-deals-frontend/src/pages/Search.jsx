@@ -175,7 +175,7 @@ function Search() {
                 {checkRating(game.steamRatingPercent)}
               </td>
             </tr>
-            )) : (<p className='text-center'>Loading Games ...</p>)
+            )) : (<tr className='text-center'><td>Loading Games ...</td></tr>)
           }
         </tbody>
 
