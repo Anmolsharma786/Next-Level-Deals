@@ -68,7 +68,6 @@ function Search() {
   };
 
   const checkRating = (steamRating) => {
-    console.log(steamRating);
     const noRating = '~'
     if (steamRating === '0') {
       return noRating
@@ -162,7 +161,7 @@ function Search() {
         </thead>
 
         <tbody>
-          {sortDealsByPrice(filteredDeals).map((game, index) => (
+          { (filteredDeals.length !== 0) ? sortDealsByPrice(filteredDeals).map((game, index) => (
             <tr key={index}>
               <td id="original-price"><s>{game.normalPrice}</s></td>
               <td id="sale-price">{game.salePrice}</td>
@@ -176,7 +175,8 @@ function Search() {
                 {checkRating(game.steamRatingPercent)}
               </td>
             </tr>
-          ))}
+            )) : (<p className='text-center'>Loading Games ...</p>)
+          }
         </tbody>
 
       </table>
