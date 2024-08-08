@@ -162,7 +162,7 @@ function Search() {
         </thead>
 
         <tbody>
-          {sortDealsByPrice(filteredDeals).map((game, index) => (
+          { (filteredDeals.length !== 0) ? sortDealsByPrice(filteredDeals).map((game, index) => (
             <tr key={index}>
               <td id="original-price"><s>{game.normalPrice}</s></td>
               <td id="sale-price">{game.salePrice}</td>
@@ -176,8 +176,10 @@ function Search() {
                 {checkRating(game.steamRatingPercent)}
               </td>
             </tr>
-          ))}
+            )) : (<tr className='text-center'><td>Loading Games ...</td></tr>)
+          }
         </tbody>
+
 
       </table>
 
