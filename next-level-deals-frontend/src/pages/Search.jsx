@@ -161,7 +161,7 @@ function Search() {
         </thead>
 
         <tbody>
-          { (filteredDeals.length !== 0) ? sortDealsByPrice(filteredDeals).map((game, index) => (
+          { filteredDeals ? sortDealsByPrice(filteredDeals).map((game, index) => (
             <tr key={index}>
               <td id="original-price"><s>{game.normalPrice}</s></td>
               <td id="sale-price">{game.salePrice}</td>
