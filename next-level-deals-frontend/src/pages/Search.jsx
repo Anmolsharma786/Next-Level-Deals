@@ -19,9 +19,9 @@ function Search() {
 
   const getAllGames = async (currPage) => {
 
-    const results = await fetch(`https://next-level-deals-4mlr.vercel.app/api/allDeals/${currPage}/${parseInt(min)}/${parseInt(max)}`);
+    const results = await fetch(`https://next-level-deals-4mlr.vercel.app/api/allDeals/${currPage}/${(min)}/${(max)}`);
     const resultsJson = await results.json();
-
+    
     setFilteredDeals(resultsJson.data);
     setTotalPages(resultsJson.totalPages);
     console.log(resultsJson);
@@ -89,7 +89,7 @@ function Search() {
       {/* Filter Buttons */}
       <div className="row justify-content-center mt-4">
         <li>
-          <Link to={`/search?min=0&max=4.99`}>
+          <Link to={`/api/search?min=0&max=4.99`}>
             <button type='button' className={`btn btn-dark col-2 me-1 ${isSelected(0, 4.99) ? 'selected' : ''}`} onClick={() => setPageNum(0)}>
               $0 - $4.99
             </button>
